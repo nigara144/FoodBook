@@ -7,4 +7,43 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="light_pink">#f0dad6</color>
+    <color name="light_blue">#cce6fe</color>
+    <color name="gray">#4A4A4A</color>
+    <color name="pink">#EC9DD5</color>
+    <color name="pink2">#EC9DD5</color>
+    <color name="green">#4C6562</color>
+    <color name="dark_green">#3B4A49</color>
+    <color name="light_green">#8CB58E</color>
+    <color name="green_100">#9CEA9F</color>
+    <color name="mint">#99bbad</color>
+    <color name="mint100">#9fb8ad</color>
+
+
+    #232323
+    //colors package 1
+    <color name="g_200">#999b84</color>
+    <color name="gray_100">#c5d7bd</color>
+    <color name="gray_150">#B4C8AC</color>
+
+    <color name="p_400">#d8ac9c</color>
+    <color name="p_500">#FFC9C8</color>
+    <color name="p_200">#efd9d1</color>
+    <color name="p_100">#f4eeed</color>
+
+    //colors package 2
+    <color name="w_100">#f5f4f4</color>
+    <color name="t_200">#cae4db</color>
+    <color name="b_200">#cdac81</color>
+    <color name="b_100">#00303f</color>
+
+    //colors package 3
+    <color name="g_600">#B4C8AC</color>
+    <color name="g_700">#A7C19E</color>
+    <color name="g_750">#A2BC99</color>
+    <color name="g_800">#7c9473</color>
+    <color name="g_400">#cfdac8</color>
+    <color name="gray_200">#e8eae6</color>
+    <color name="gray_400">#cdd0cb</color>
+
 </resources>

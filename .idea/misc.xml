@@ -5,6 +5,9 @@
       <map>
         <entry key="..\:/Users/Nigar/FoodBook/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/Nigar/FoodBook/app/src/main/res/layout/activity_signup.xml" value="0.22" />
+        <entry key="..\:/Users/Nigar/FoodBook/app/src/main/res/layout/activity_splash.xml" value="0.15896739130434784" />
+        <entry key="..\:/Users/Nigar/FoodBook/app/src/main/res/layout/all_category_recipes_screen.xml" value="0.15896739130434784" />
+        <entry key="..\:/Users/Nigar/FoodBook/app/src/main/res/layout/login_screen.xml" value="0.15896739130434784" />
       </map>
     </option>
   </component>

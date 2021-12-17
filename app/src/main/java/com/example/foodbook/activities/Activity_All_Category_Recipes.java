@@ -26,7 +26,7 @@ public class Activity_All_Category_Recipes extends AppCompatActivity {
         initViews();
         category = getIntent().getStringExtra(CATEGORY);
         getSupportFragmentManager().beginTransaction().add(R.id.categories_LAY_list, fragment_all_category_recipes).commit();
-        fragment_all_category_recipes.refresh(category);
+//        fragment_all_category_recipes.refresh(category);
     }
 
     private void findViews() {

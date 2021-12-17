@@ -22,7 +22,7 @@
             android:textStyle="bold"
             android:gravity="center_horizontal"
             android:paddingTop="120dp"
-            android:fontFamily="@font/sofia_regular"
+            android:fontFamily="sans-serif"
             android:textColor="@color/gray"/>
 
         <ImageView

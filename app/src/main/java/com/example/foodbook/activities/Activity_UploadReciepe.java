@@ -20,9 +20,9 @@ import com.example.foodbook.utils.AppManager;
 import com.example.foodbook.R;
 import com.example.foodbook.objects.Recipe;
 import com.example.foodbook.objects.User;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
+//import com.google.android.gms.tasks.OnCompleteListener;
+//import com.google.android.gms.tasks.OnSuccessListener;
+//import com.google.android.gms.tasks.Task;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
@@ -239,10 +239,10 @@ public class Activity_UploadReciepe extends AppCompatActivity implements View.On
         Recipe.RecipeCategory recipeCategory = Recipe.RecipeCategory.valueOf(category);
         imageUri = downloadUri;
         String uri_string = imageUri.toString();
-        recipe = new Recipe(recipeName, recipeIng, recipeDir, recipePreTime, recipeCategory, uri_string, false, new Date(System.currentTimeMillis()), mAuth.getCurrentUser().getUid());
+//        recipe = new Recipe(recipeName, recipeIng, recipeDir, recipePreTime, recipeCategory, uri_string, false, new Date(System.currentTimeMillis()), mAuth.getCurrentUser().getUid());
         recipes.add(recipe);
         user.addRecipe(recipes);
-        updateUserRecipes();
+//        updateUserRecipes();
     }
 
 //    private void updateUserRecipes(){

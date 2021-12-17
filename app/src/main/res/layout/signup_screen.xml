@@ -35,7 +35,7 @@
             android:text="Sign Up"
             android:textSize="70dp"
             android:textStyle="bold"
-            android:fontFamily="@font/sofia_regular"
+            android:fontFamily="sans-serif"
             android:textColor="@color/g_700"
             android:gravity="center_horizontal"/>
 

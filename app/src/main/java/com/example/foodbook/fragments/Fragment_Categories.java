@@ -15,7 +15,7 @@ import com.example.foodbook.objects.Category;
 import com.example.foodbook.utils.FB_Manager;
 import com.example.foodbook.R;
 import com.example.foodbook.objects.Recipe;
-import com.google.firebase.auth.FirebaseAuth;
+//import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -24,7 +24,7 @@ public class Fragment_Categories extends Fragment {
     private static final String CATEGORY = "category";
     private static final String TAG = "tag";
     private RecyclerView categories_LST_names;
-    private FirebaseAuth mAuth;
+//    private FirebaseAuth mAuth;
     private List<Category> categories = new ArrayList<>();
     private boolean isInWL;
     private Fragment_All_Category_Recipes fragment_all_category_recipes;
@@ -36,7 +36,7 @@ public class Fragment_Categories extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_categories_list , container,false);
-        mAuth = FirebaseAuth.getInstance();
+//        mAuth = FirebaseAuth.getInstance();
         fragment_all_category_recipes = new Fragment_All_Category_Recipes();
         findViews(view);
         initViews();

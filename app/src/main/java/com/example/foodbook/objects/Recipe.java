@@ -13,13 +13,26 @@ public class Recipe implements Serializable {
     boolean isInWishList;
     Date recipeTimeAndDate;
     String userUid;
+    double ratingAvg;
+    int rating;
+    int countRate;
+    int diffLevel;
 
 
 
     public Recipe(){
     }
 
-    public Recipe(String recipeName, String recipeIngredients, String recipeDirections, String preparationTime, RecipeCategory category, String recipeImage, boolean isInWishList, Date recipeTimeAndDate, String userUid) {
+
+    public int getDiffLevel() {
+        return diffLevel;
+    }
+
+    public void setDiffLevel(int diffLevel) {
+        this.diffLevel = diffLevel;
+    }
+
+    public Recipe(String recipeName, String recipeIngredients, String recipeDirections, String preparationTime, RecipeCategory category, String recipeImage, boolean isInWishList, Date recipeTimeAndDate, String userUid, double ratingAvg, int rating, int countRate, int diffLevel) {
         this.recipeName = recipeName;
         this.recipeIngredients = recipeIngredients;
         this.recipeDirections = recipeDirections;
@@ -29,6 +42,37 @@ public class Recipe implements Serializable {
         this.isInWishList = isInWishList;
         this.recipeTimeAndDate = recipeTimeAndDate;
         this.userUid = userUid;
+        this.ratingAvg = ratingAvg;
+        this.rating = rating;
+        this.countRate = countRate;
+        this.diffLevel = diffLevel;
+    }
+
+    public int getCountRate() {
+        return countRate;
+    }
+
+    public void setCountRate(int countRate) {
+        this.countRate = countRate;
+    }
+
+    public double getRatingAvg() {
+        return ratingAvg;
+    }
+
+    public void setRatingAvg(double ratingAvg, int countRate, int rating) {
+        double sumRate;
+        countRate ++;
+        sumRate = (this.ratingAvg * (countRate-1)) + rating;
+        this.ratingAvg = sumRate/countRate;
+    }
+
+    public int getRating() {
+        return rating;
+    }
+
+    public void setRating(int rating) {
+        this.rating = rating;
     }
 
     public String getRecipeName() {
@@ -102,4 +146,6 @@ public class Recipe implements Serializable {
     public void setUserUid(String userUid) {
         this.userUid = userUid;
     }
+
+
 }

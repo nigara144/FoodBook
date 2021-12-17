@@ -16,11 +16,6 @@ import com.example.foodbook.utils.FB_Manager;
 import com.example.foodbook.R;
 import com.example.foodbook.objects.Recipe;
 import com.example.foodbook.activities.Activity_Specific_Recipe;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -111,7 +106,7 @@ public class Fragment_All_Category_Recipes extends Fragment {
             @Override
             public void onAddToWishListClicked(View view, Recipe recipe, int position) {
                 isInWL = true;
-                fb_manager.setOnAddToWishList(view, recipe, mAuth,getContext());
+//                fb_manager.setOnAddToWishList(view, recipe, mAuth,getContext());
             }
         });
     }

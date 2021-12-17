@@ -77,7 +77,7 @@ public class Activity_Main extends AppCompatActivity implements View.OnClickList
                     Toast.LENGTH_LONG).show();
             return;
         }else {
-            isUserExist();
+//            isUserExist();
         }
     }
 

@@ -238,7 +238,7 @@ public class Activity_MyFeed extends AppCompatActivity implements View.OnClickLi
                         if(imageUri!= null){
                             Glide.with(this).load(imageUri).apply(RequestOptions.circleCropTransform()).into(user_img_IMG);
                             Glide.with(this).load(imageUri).apply(RequestOptions.circleCropTransform()).into(user_img_IMG_drawer);
-                            uploadImageToDB();
+//                            uploadImageToDB();
                         }
                         //data gives you the image uri. Try to convert that to bitmap
                         break;

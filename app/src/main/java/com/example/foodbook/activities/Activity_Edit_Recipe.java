@@ -114,7 +114,7 @@ public class Activity_Edit_Recipe extends AppCompatActivity {
         done_With_Edit_Recipe_BTN.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                uploadRecipe();
+//                uploadRecipe();
             }
         });
         recipe_scpecific_Edit_IMG.setOnClickListener(new View.OnClickListener() {
@@ -151,7 +151,7 @@ public class Activity_Edit_Recipe extends AppCompatActivity {
                         if(imageUri!= null){
                             Glide.with(this).load(imageUri).apply(RequestOptions.centerCropTransform()).into(recipe_scpecific_Edit_IMG);
                         }
-                        uploadImageToDB();
+//                        uploadImageToDB();
                         //data gives you the image uri. Try to convert that to bitmap
                         break;
                     } else if (resultCode == Activity.RESULT_CANCELED) {
@@ -203,7 +203,10 @@ public class Activity_Edit_Recipe extends AppCompatActivity {
         }else {
             uri_string = recipe.getRecipeImage();
         }
-        recipe = new Recipe(recipeName, recipeIng, recipeDir, recipePreTime, recipeCategory, uri_string ,isRecipeInwl, recipe.getRecipeTimeAndDate(), recipe.getUserUid());
+        recipe = new Recipe(recipeName, recipeIng, recipeDir, recipePreTime, recipeCategory,
+                uri_string ,isRecipeInwl, recipe.getRecipeTimeAndDate(), recipe.getUserUid(),
+                recipe.getRatingAvg(), recipe.getRating(), recipe.getCountRate(),
+                recipe.getDiffLevel());
     }
 
 

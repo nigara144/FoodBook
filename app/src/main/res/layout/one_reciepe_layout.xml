@@ -72,7 +72,7 @@
             android:textStyle="bold"
             android:layout_marginLeft="5dp"
             android:text="Buisquit Cake"
-            android:fontFamily="@font/sofia_regular"
+            android:fontFamily="sans-serif"
             android:textColor="#6a6a6a"
             android:textSize="20sp" />
 

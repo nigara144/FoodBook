@@ -127,7 +127,7 @@
                     android:textStyle="bold"
                     android:gravity="center_vertical"
                     android:paddingLeft="10dp"
-                    android:fontFamily="@font/sofia_regular"
+                    android:fontFamily="sans-serif"
                     android:textColor="@color/gray"/>
 
                 <TextView

@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class RestClient {
 
     //const
-    private static String BASE_URL = "http://localhost:8091";
+    private static String BASE_URL = "http://localhost:8091/iob/users";
     private static Retrofit retrofit;
 
     // static methods

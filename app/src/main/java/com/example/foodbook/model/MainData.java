@@ -1,95 +1,64 @@
 package com.example.foodbook.model;
 
-import android.os.Parcel;
-import android.os.Parcelable;
+
 import com.google.gson.annotations.SerializedName;
-import java.util.ArrayList;
 
-public class MainData implements Parcelable {
+public class MainData {
 
-    //TODO: CHANGE ALL PARAMETERS TO USER PARMETER
+    @SerializedName("userId")
+    public String userId;
+    @SerializedName("role")
+    public UserRoleEntityEnum role;
+    @SerializedName("username")
+    public String username;
+    @SerializedName("avatar")
+    public String avatar;
 
-    @SerializedName("flag")
-    public String flag;
-    @SerializedName("name")
-    public String name;
-    @SerializedName("nativeName")
-    public String nativeName;
-    @SerializedName("alpha3Code")
-    public String code;
-    @SerializedName("borders")
-    private ArrayList<String> borders = new ArrayList<>();
     public MainData() {
     }
 
-    protected MainData(Parcel in) {
-        flag = in.readString();
-        name = in.readString();
-        nativeName = in.readString();
-        code = in.readString();
-        borders = in.createStringArrayList();
+    public MainData(String userId, UserRoleEntityEnum role, String username, String avatar) {
+        userId = this.userId;
+        role = this.role;
+        username = this.username;
+        avatar = this.avatar;
     }
 
-    public static final Creator<MainData> CREATOR = new Creator<MainData>() {
-        @Override
-        public MainData createFromParcel(Parcel in) {
-            return new MainData(in);
-        }
 
-        @Override
-        public MainData[] newArray(int size) {
-            return new MainData[size];
-        }
-    };
-
-    public String getFlag() {
-        return flag;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setFlag(String flag) {
-        this.flag = flag;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
-    public String getName() {
-        return name;
+    public UserRoleEntityEnum getRole() {
+        return role;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setRole(UserRoleEntityEnum role) {
+        this.role = role;
     }
 
-    public String getCode() { return code; }
-
-    public void setCode(String code) { this.code = code; }
-
-    public String getNativeName() {
-        return nativeName;
+    public String getUsername() {
+        return username;
     }
 
-    public void setNativeName(String nativeName) {
-        this.nativeName = nativeName;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
-    public ArrayList<String> getBorders() {
-        return borders;
+    public String getAvatar() {
+        return avatar;
     }
 
-    public void setBorders(ArrayList<String> borders) {
-        this.borders = borders;
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(flag);
-        dest.writeString(name);
-        dest.writeString(nativeName);
-        dest.writeString(code);
-        dest.writeStringList(borders);
+    public static enum UserRoleEntityEnum {
+        PLAYER, MANAGER, ADMIN
     }
-
 }

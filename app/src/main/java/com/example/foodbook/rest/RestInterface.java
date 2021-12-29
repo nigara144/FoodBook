@@ -5,6 +5,7 @@ import com.example.foodbook.model.MainData;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -20,7 +21,7 @@ public interface RestInterface {
     Call<MainData> updateUser();
 
     @POST("/iob/users")
-    Call<MainData> createNewUser();
+    Call<MainData> createNewUser(@Body MainData mainData);
 
     //Admin REST Commands
     @GET("/iob/admin/users/{userDomain}/{userEmail}")

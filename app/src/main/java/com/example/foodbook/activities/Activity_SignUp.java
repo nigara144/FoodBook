@@ -48,7 +48,7 @@ public class Activity_SignUp extends AppCompatActivity {
     private EditText signUp_password_LBL;
     private EditText verify_password_LBL;
     private String uName;
-    private String email;
+    private String email, email2;
     private String password;
     private String password_ver;
     private MainData.UserRoleEntityEnum role;
@@ -89,7 +89,7 @@ public class Activity_SignUp extends AppCompatActivity {
     private void signUpUser() {
         uName = signUp_uName_LBL.getText().toString();
         email = signUp_email_LBL.getText().toString();
-        email = "2022A.Roei.Berko;" + email;
+        Log.d("ptt", email);
         password = signUp_password_LBL.getText().toString();
         role = MainData.UserRoleEntityEnum.PLAYER;
         if (uName.isEmpty()) {
@@ -105,7 +105,7 @@ public class Activity_SignUp extends AppCompatActivity {
         }
 
         RestInterface restInterface = RestClient.createRetrofit().create(RestInterface.class);
-        Call<MainData> call = restInterface.createNewUser(new MainData(email, role, uName, password));
+        Call<MainData> call = restInterface.createNewUser(new MainData(new User("2022A.Roei.Berko;", email), role, uName, password));
         call.enqueue(new Callback<MainData>() {
             @Override
             public void onResponse(Call<MainData> call, Response<MainData> response) {
@@ -113,12 +113,14 @@ public class Activity_SignUp extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Something wrong, Code: " + response.code(), Toast.LENGTH_LONG).show();
                     return;
                 }
+                Intent myIntent = new Intent(Activity_SignUp.this, Activity_MyFeed.class);
+                startActivity(myIntent);
+
             }
 
             @Override
             public void onFailure(Call<MainData> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Something wrong check it", Toast.LENGTH_LONG).show();
-                Log.d("ptt", t.getMessage());
             }
         });
 

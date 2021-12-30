@@ -16,6 +16,15 @@
         <entry key="..\:/Users/Nigar/FoodBook/app/src/main/res/menu/drawer_menu.xml" value="0.1" />
         <entry key="..\:/Users/roei_berko/StudioProjects/FoodBook/app/src/main/res/layout/activity_splash.xml" value="0.20572916666666666" />
         <entry key="..\:/Users/roei_berko/StudioProjects/FoodBook/app/src/main/res/layout/login_screen.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/yarin/StudioProjects/FoodBook/app/src/main/res/layout/activity_splash.xml" value="0.2" />
+        <entry key="..\:/Users/yarin/StudioProjects/FoodBook/app/src/main/res/layout/all_category_recipes_screen.xml" value="0.14010416666666667" />
+        <entry key="..\:/Users/yarin/StudioProjects/FoodBook/app/src/main/res/layout/categories_screen.xml" value="0.14010416666666667" />
+        <entry key="..\:/Users/yarin/StudioProjects/FoodBook/app/src/main/res/layout/drawer_main.xml" value="0.264" />
+        <entry key="..\:/Users/yarin/StudioProjects/FoodBook/app/src/main/res/layout/fragment_categories_list.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/yarin/StudioProjects/FoodBook/app/src/main/res/layout/fragment_my_recipes.xml" value="0.264" />
+        <entry key="..\:/Users/yarin/StudioProjects/FoodBook/app/src/main/res/layout/fragment_topten_list.xml" value="0.14010416666666667" />
+        <entry key="..\:/Users/yarin/StudioProjects/FoodBook/app/src/main/res/layout/fragment_wish_list.xml" value="0.14010416666666667" />
+        <entry key="..\:/Users/yarin/StudioProjects/FoodBook/app/src/main/res/layout/specific_recipe_layout.xml" value="0.4" />
       </map>
     </option>
   </component>

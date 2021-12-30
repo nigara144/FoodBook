@@ -6,9 +6,14 @@ public class User {
     private String email, UserName;
     private ArrayList<Recipe> userRecipes = new ArrayList<>();
     private ArrayList<Recipe> wishList = new ArrayList<>();
-    String userImage;
+    String userImage, domain;
 
-    public User(){
+    public User() {
+    }
+
+    public User(String domain, String email) {
+        this.email = email;
+        this.domain = domain;
     }
 
     public User(String email, String userName, ArrayList<Recipe> userRecipes, ArrayList<Recipe> wishList, String userImage) {
@@ -51,7 +56,7 @@ public class User {
         this.wishList = wishList;
     }
 
-    public void addRecipe(ArrayList<Recipe> recipes){
+    public void addRecipe(ArrayList<Recipe> recipes) {
         userRecipes.addAll(recipes);
     }
 

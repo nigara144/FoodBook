@@ -1,12 +1,13 @@
 package com.example.foodbook.model;
 
 
+import com.example.foodbook.objects.User;
 import com.google.gson.annotations.SerializedName;
 
 public class MainData {
 
     @SerializedName("userId")
-    public String userId;
+    public User user;
     @SerializedName("role")
     public UserRoleEntityEnum role;
     @SerializedName("username")
@@ -17,21 +18,14 @@ public class MainData {
     public MainData() {
     }
 
-    public MainData(String userId, UserRoleEntityEnum role, String username, String avatar) {
-        userId = this.userId;
-        role = this.role;
-        username = this.username;
-        avatar = this.avatar;
+    public MainData(User user, UserRoleEntityEnum role, String username, String avatar) {
+
+        this.user = user;
+        this.role = role;
+        this.username = username;
+        this.avatar = avatar;
     }
 
-
-    public String getUserId() {
-        return userId;
-    }
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
 
     public UserRoleEntityEnum getRole() {
         return role;

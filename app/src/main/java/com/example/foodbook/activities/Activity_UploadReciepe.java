@@ -55,8 +55,6 @@ public class Activity_UploadReciepe extends AppCompatActivity implements View.On
     private static final int REQUEST_CODE = 1;
     private AppManager appManager;
     private String recipeName;
-//    private FirebaseAuth mAuth;
-//    private StorageReference storageReference;
     private Map<String, Object> userRecipes;
     private ArrayList<Recipe> recipes;
     private Recipe recipe;
@@ -81,7 +79,6 @@ public class Activity_UploadReciepe extends AppCompatActivity implements View.On
         setContentView(R.layout.upload_reciepe_screen);
         appManager = new AppManager(this);
         appManager.findViewsUploadReciepe(this);
-//        mAuth = FirebaseAuth.getInstance();
         user = new User();
         recipes = new ArrayList<>();
         userRecipes = new HashMap<>();
@@ -158,7 +155,6 @@ public class Activity_UploadReciepe extends AppCompatActivity implements View.On
                     }
                 });
 
-//                uploadImageToDB();
                 break;
             case R.id.backto_myFeed_BTN:
                 Intent myIntent = new Intent(Activity_UploadReciepe.this, Activity_MyFeed.class);
@@ -197,91 +193,8 @@ public class Activity_UploadReciepe extends AppCompatActivity implements View.On
         }
     }
 
-//    private void uploadImageToDB() {
-//        ContentResolver cR = getContentResolver();
-//        MimeTypeMap mime = MimeTypeMap.getSingleton();
-//        if (imageUri != null) {
-//            storageReference = FirebaseStorage.getInstance().getReference("recipesImages").child(System.currentTimeMillis()
-//                    + "." + mime.getExtensionFromMimeType(cR.getType(imageUri)));
-//
-//            storageReference.putFile(imageUri).continueWithTask(task -> {
-//                if (!task.isSuccessful()) {
-//                    throw Objects.requireNonNull(task.getException());
-//                }
-//                return storageReference.getDownloadUrl();
-//            }).addOnCompleteListener(task -> {
-//                if (task.isSuccessful()) {
-//                    downloadUri = task.getResult();
-//                    uploadRecipeToMainRecipes();
-////                    uploadRecipeNameToUser();
-//                    uploadRecipe();
-//                }
-//            });
-//        }else{
-//            Toast.makeText(Activity_UploadReciepe.this,"Please upload an Recipe image!",
-//                    Toast.LENGTH_LONG).show();
-//        }
-//    }
 
 
-//    private void uploadRecipeToMainRecipes(){
-//        addSpecificRecipe();
-//        FirebaseFirestore.getInstance().collection("Recipes").document(Objects.requireNonNull(recipeName +"-"+mAuth.getCurrentUser().getUid()))
-//                .set(recipe).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//                if(task.isSuccessful()){
-//                    Toast.makeText(Activity_UploadReciepe.this,"Recipe has been uploaded successfully!",
-//                            Toast.LENGTH_LONG).show();
-//                }else{
-//                    Toast.makeText(Activity_UploadReciepe.this,"Failed to upload recipe! Try again!",
-//                            Toast.LENGTH_LONG).show();
-//                    Log.d("failed","Failed to upload recipe! Try again");
-//                }
-//            }
-//        });
-//    }
-
-//    private void uploadRecipe(){
-//        addSpecificRecipe();
-//        FirebaseFirestore.getInstance().collection("Users")
-//                .document(Objects.requireNonNull(mAuth.getCurrentUser().getUid())).collection("userRecipes").document(Objects.requireNonNull(recipeName +"-"+mAuth.getCurrentUser().getUid()))
-//                .set(recipe).addOnCompleteListener(new OnCompleteListener<Void>() {
-//            @Override
-//            public void onComplete(@NonNull Task<Void> task) {
-//                if(task.isSuccessful()){
-//                    Toast.makeText(Activity_UploadReciepe.this,"Recipe has been uploaded successfully!",
-//                            Toast.LENGTH_LONG).show();
-//                    updateRecipesList();
-//                    which_Activity = getIntent().getStringExtra(F_WHICH_ACTIVITY);
-//                    if(which_Activity.equals("Activity_MyRecipes")) {
-//                        Intent myIntent = new Intent(Activity_UploadReciepe.this, Activity_MyRecipes.class);
-//                        startActivity(myIntent);
-//                        finish();
-//                    }
-//                    else if(which_Activity.equals("Activity_MyFeed")){
-//                        Intent myIntent = new Intent(Activity_UploadReciepe.this, Activity_MyFeed.class);
-//                        startActivity(myIntent);
-//                        finish();
-//                    }
-//                }else{
-//                    Toast.makeText(Activity_UploadReciepe.this,"Failed to upload recipe! Try again!",
-//                            Toast.LENGTH_LONG).show();
-//                    Log.d("failed","Failed to upload recipe! Try again");
-//                }
-//            }
-//        });
-//    }
-
-//    private void updateRecipesList() {
-//        FirebaseFirestore.getInstance().collection("Users")
-//                .document(Objects.requireNonNull(mAuth.getCurrentUser().getUid())).update("userRecipes",userRecipes).addOnSuccessListener(aVoid -> {
-//            Log.d("SUCCESS", "userRecipes");
-//        })
-//                .addOnFailureListener(e -> {
-//                    Toast.makeText(this, "Error! " + e.getMessage(), Toast.LENGTH_SHORT).show();
-//                });
-//    }
 
     private void addSpecificRecipe(){
         recipeName = recipe_Name_LBL.getText().toString();
@@ -296,27 +209,10 @@ public class Activity_UploadReciepe extends AppCompatActivity implements View.On
         Recipe.RecipeCategory recipeCategory = Recipe.RecipeCategory.valueOf(category);
         imageUri = downloadUri;
         String uri_string = imageUri.toString();
-//        recipe = new Recipe(recipeName, recipeIng, recipeDir, recipePreTime, recipeCategory, uri_string, false, new Date(System.currentTimeMillis()), mAuth.getCurrentUser().getUid());
         recipes.add(recipe);
         user.addRecipe(recipes);
-//        updateUserRecipes();
     }
 
-//    private void updateUserRecipes(){
-//        FirebaseFirestore.getInstance().collection("Users").document(Objects.requireNonNull(mAuth.getCurrentUser().getUid())).collection("userRecipes").get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot documentSnapshots) {
-//                        if (documentSnapshots.isEmpty()) {
-//                            Log.d("empty", "onSuccess: LIST EMPTY");
-//                            return;
-//                        } else {
-//                            for(DocumentSnapshot ds : documentSnapshots.getDocuments())   {
-//                                Recipe recipe1 = ds.toObject(Recipe.class);
-//                                userRecipes.put(recipe1.getRecipeName()+"-"+mAuth.getCurrentUser().getUid(), recipe1);                            }
-//                        }
-//                    }
-//                });
-//    }
+
 
 }

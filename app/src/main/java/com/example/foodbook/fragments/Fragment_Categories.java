@@ -1,7 +1,6 @@
 package com.example.foodbook.fragments;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,9 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodbook.activities.Activity_All_Category_Recipes;
 import com.example.foodbook.utils.Adapter_Categories;
 import com.example.foodbook.objects.Category;
-import com.example.foodbook.utils.FB_Manager;
 import com.example.foodbook.R;
-import com.example.foodbook.objects.Recipe;
 //import com.google.firebase.auth.FirebaseAuth;
 import java.util.ArrayList;
 import java.util.List;
@@ -28,7 +25,6 @@ public class Fragment_Categories extends Fragment {
     private List<Category> categories = new ArrayList<>();
     private boolean isInWL;
     private Fragment_All_Category_Recipes fragment_all_category_recipes;
-    private FB_Manager fb_manager = new FB_Manager();
 
 
 
@@ -36,7 +32,6 @@ public class Fragment_Categories extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_categories_list , container,false);
-//        mAuth = FirebaseAuth.getInstance();
         fragment_all_category_recipes = new Fragment_All_Category_Recipes();
         findViews(view);
         initViews();

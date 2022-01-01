@@ -1,7 +1,6 @@
 package com.example.foodbook.fragments;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,14 +10,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.foodbook.utils.Adapter_Recipes;
-import com.example.foodbook.objects.Category;
-import com.example.foodbook.utils.FB_Manager;
 import com.example.foodbook.R;
 import com.example.foodbook.objects.Recipe;
 import com.example.foodbook.activities.Activity_Specific_Recipe;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
 
 public class Fragment_All_Category_Recipes extends Fragment {
@@ -26,10 +22,8 @@ public class Fragment_All_Category_Recipes extends Fragment {
     private static final String RECIPE = "Recipe";
     private static final String TAG = "tag";
     private RecyclerView categories_LST_names;
-//    private FirebaseAuth mAuth;
     private List<Recipe> all_category_recipes = new ArrayList<>();
     private boolean isInWL;
-    private FB_Manager fb_manager = new FB_Manager();
     private View view;
     private Recipe recipe;
 
@@ -37,7 +31,6 @@ public class Fragment_All_Category_Recipes extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_categories_list , container,false);
-//        mAuth = FirebaseAuth.getInstance();
         findViews(view);
         return view;
     }
@@ -49,48 +42,6 @@ public class Fragment_All_Category_Recipes extends Fragment {
     }
 
 
-//    private void  getRecipesByCategoryFromDB(String categoryName) {
-//        FirebaseFirestore.getInstance().collection("Recipes")
-//                    .whereEqualTo("category",categoryName).get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot documentSnapshots) {
-//                        if (documentSnapshots.isEmpty()) {
-//                            Log.d("empty", "onSuccess: LIST EMPTY");
-//                            return;
-//                        } else {
-//                            for(DocumentSnapshot ds : documentSnapshots.getDocuments())   {
-//                                recipe = ds.toObject(Recipe.class);
-//                                recipe.setInWishList(false);
-//                                getRecipesFromMyWishListAndCheck(recipe, categoryName);
-//
-//                            }
-//                        }
-//                    }
-//                });
-//    }
-
-//    private void getRecipesFromMyWishListAndCheck(Recipe r, String categoryName){
-//        FirebaseFirestore.getInstance().collection("Users").document(Objects.requireNonNull(mAuth.getCurrentUser().getUid())).collection("userWishList").get()
-//                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-//                    @Override
-//                    public void onSuccess(QuerySnapshot documentSnapshots) {
-//                        if (documentSnapshots.isEmpty()) {
-//                            Log.d("empty", "onSuccess: LIST EMPTY-HERE -getRecipesFromMyWishList");
-//                            addRecipesToListAndSetAdapter(r, categoryName);
-//                            return;
-//                        } else {
-//                            for(DocumentSnapshot ds : documentSnapshots.getDocuments())   {
-//                                recipe = ds.toObject(Recipe.class);
-//                                if(ds.getId().equals(r.getRecipeName()+"-"+r.getUserUid())){
-//                                    r.setInWishList(true);
-//                                }
-//                            }
-//                            addRecipesToListAndSetAdapter(r, categoryName);
-//                        }
-//                    }
-//                });
-//    }
 
     private void addRecipesToListAndSetAdapter(Recipe r, String categoryName){
         all_category_recipes.add(r);
@@ -106,7 +57,6 @@ public class Fragment_All_Category_Recipes extends Fragment {
             @Override
             public void onAddToWishListClicked(View view, Recipe recipe, int position) {
                 isInWL = true;
-//                fb_manager.setOnAddToWishList(view, recipe, mAuth,getContext());
             }
         });
     }
@@ -121,9 +71,6 @@ public class Fragment_All_Category_Recipes extends Fragment {
     }
 
 
-//    public void refresh(String category_name) {
-//        getRecipesByCategoryFromDB(category_name);
-//    }
 }
 
 

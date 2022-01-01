@@ -35,7 +35,6 @@ public class Activity_SignUp extends AppCompatActivity {
     private ArrayList<Recipe> userRecipes;
     private ArrayList<Recipe> wishList;
     private AppManager appManager;
-    //    private FirebaseAuth mAuth;
     private Button signup_BTN;
     private ImageButton back_button;
     private EditText signUp_uName_LBL;

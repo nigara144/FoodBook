@@ -17,13 +17,8 @@ import com.example.foodbook.rest.RestClient;
 import com.example.foodbook.rest.RestInterface;
 import com.example.foodbook.utils.AppManager;
 import com.example.foodbook.R;
-//import com.google.android.gms.tasks.OnCompleteListener;
-//import com.google.android.gms.tasks.Task;
-//import com.google.firebase.auth.AuthResult;
-//import com.google.firebase.auth.FirebaseAuth;
-//import com.google.firebase.auth.FirebaseUser;
 
-import java.util.Timer;
+
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,7 +28,6 @@ import retrofit2.Response;
 public class Activity_Main extends AppCompatActivity implements View.OnClickListener {
     private static final String A_TAG = "A_tag";
     private AppManager appManager;
-//    private FirebaseAuth mAuth;
     private Button login_BTN;
     private Button signup_manualy_BTN;
     private EditText login_email_LBL;
@@ -48,7 +42,6 @@ public class Activity_Main extends AppCompatActivity implements View.OnClickList
         setContentView(R.layout.login_screen);
         appManager = new AppManager(this);
         appManager.findViewsLogin(this);
-//        mAuth = FirebaseAuth.getInstance();
         initViews();
     }
 
@@ -111,40 +104,7 @@ public class Activity_Main extends AppCompatActivity implements View.OnClickList
         }
     }
 
-//    private void isUserExist() {
-//        final String userEnteredEmail = login_email_LBL.getText().toString().trim();
-//        final String userEnteredPassword = login_password_LBL.getText().toString().trim();
-//
-//        mAuth.signInWithEmailAndPassword(userEnteredEmail, userEnteredPassword)
-//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-//                    @Override
-//                    public void onComplete(@NonNull Task<AuthResult> task) {
-//                        if (task.isSuccessful()) {
-//                            // If user exist , we read his data from DB
-//                            FirebaseUser user = mAuth.getCurrentUser();
-//                            Intent intent = new Intent(getApplicationContext(), Activity_MyFeed.class);
-//                            intent.putExtra(A_TAG,"Activity_Main");
-//                            startActivity(intent);
-////                            readUserFromDB(user.getUid());
-//                       } else {
-//                            // If the system is unable to find the user, it issues an error message accordingly
-//                            if (task.getException().getMessage().contains("email")) {
-//                                login_email_LBL.setError(task.getException().getMessage());
-//                                login_email_LBL.requestFocus();
-//                                makeToast("Cant find user with email:" + login_email_LBL.getText().toString()+"!");
-//                            } else if (task.getException().getMessage().contains("password")) {
-//                                login_password_LBL.setError(task.getException().getMessage());
-//                                login_password_LBL.requestFocus();
-//                                makeToast("Incorrect password!");
-//                            } else if (task.getException().getMessage().contains("user")) {
-//                                login_email_LBL.setError(task.getException().getMessage());
-//                                login_email_LBL.requestFocus();
-//                                makeToast("No such user!");
-//                            }
-//                        }
-//                    }
-//                });
-//    }
+
 
     void makeToast(String string){
         this.runOnUiThread(new Runnable() {

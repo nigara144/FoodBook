@@ -50,8 +50,6 @@ public class Activity_MyFeed extends AppCompatActivity implements View.OnClickLi
     private Fragment_wishList fragment_wishList;
     private Fragment_Recent_Recipes recent_recipes;
     private AppManager appManager;
-//    private StorageReference storageReference;
-//    private FirebaseAuth mAuth;
     private Intent myIntent;
     private Button upload_recipe_BTN;
     private ImageButton logout_button;
@@ -77,7 +75,6 @@ public class Activity_MyFeed extends AppCompatActivity implements View.OnClickLi
         setContentView(R.layout.drawer_main);
         appManager = new AppManager(this);
         appManager.findViewsMyFeed(this);
-//        mAuth = FirebaseAuth.getInstance();
         fragment_wishList = new Fragment_wishList();
         recent_recipes = new Fragment_Recent_Recipes();
         menuNavigation();
@@ -137,7 +134,6 @@ public class Activity_MyFeed extends AppCompatActivity implements View.OnClickLi
                 finish();
                 break;
             case R.id.logout_button:
-//                FirebaseAuth.getInstance().signOut();
                 GlobalState.getLoggedUser().setLoggedUser(null);
                 myIntent = new Intent(Activity_MyFeed.this, Activity_Main.class);
                 startActivity(myIntent);
@@ -190,32 +186,6 @@ public class Activity_MyFeed extends AppCompatActivity implements View.OnClickLi
         logout_button.setOnClickListener(this);
         user_img_IMG.setOnClickListener(this);
         user_img_IMG_drawer.setOnClickListener(this);
-//        if (imageUri == null) {
-//            DocumentReference documentReference = FirebaseFirestore.getInstance()
-//                    .collection("Users").document(Objects.requireNonNull(mAuth.getCurrentUser().getUid()));
-//            documentReference.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-//                @Override
-//                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-//                    if (task.isSuccessful()) {
-//                        DocumentSnapshot document = task.getResult();
-//                        if (document.getData().get("userImage") != null) {
-//                            uri_string = document.getData().get("userImage").toString();
-//                            if(uri_string!= null) {
-//                                imageUri = Uri.parse(uri_string);
-//                                changeUserProfileImage();
-//                            }
-//                        } else {
-//                            Log.d("not found", "No such document");
-//                        }
-//                        userName = document.getData().get("userName").toString();
-//                        userEmail = document.getData().get("email").toString();
-//                        setUserNameAndEmail(userName, userEmail);
-//                    } else {
-//                        Log.d("failed", "get failed with ", task.getException());
-//                    }
-//                }
-//            });
-//        }
 
     }
 
@@ -248,7 +218,6 @@ public class Activity_MyFeed extends AppCompatActivity implements View.OnClickLi
                         if(imageUri!= null){
                             Glide.with(this).load(imageUri).apply(RequestOptions.circleCropTransform()).into(user_img_IMG);
                             Glide.with(this).load(imageUri).apply(RequestOptions.circleCropTransform()).into(user_img_IMG_drawer);
-//                            uploadImageToDB();
                         }
                         //data gives you the image uri. Try to convert that to bitmap
                         break;
@@ -263,29 +232,6 @@ public class Activity_MyFeed extends AppCompatActivity implements View.OnClickLi
     }
 
 
-//    private void uploadImageToDB() {
-//        ContentResolver cR = getContentResolver();
-//        MimeTypeMap mime = MimeTypeMap.getSingleton();
-//        if (imageUri != null) {
-//            storageReference = FirebaseStorage.getInstance().getReference("userImages").child(System.currentTimeMillis()
-//                    + "." + mime.getExtensionFromMimeType(cR.getType(imageUri)));
-//
-//            storageReference.putFile(imageUri).continueWithTask(task -> {
-//                if (!task.isSuccessful()) {
-//                    throw Objects.requireNonNull(task.getException());
-//                }
-//                return storageReference.getDownloadUrl();
-//            }).addOnCompleteListener(task -> {
-//                if (task.isSuccessful()) {
-//                    downloadUri = task.getResult();
-//                    DocumentReference documentReference = FirebaseFirestore.getInstance()
-//                            .collection("Users").document(Objects.requireNonNull(mAuth.getCurrentUser().getUid()));
-//                    imageUri = downloadUri;
-//                    documentReference.update("userImage", imageUri.toString());
-//                }
-//            });
-//        }
-//    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -307,7 +253,6 @@ public class Activity_MyFeed extends AppCompatActivity implements View.OnClickLi
                 finish();
                 break;
             case R.id.Log_Out:
-//                FirebaseAuth.getInstance().signOut();
                 myIntent = new Intent(Activity_MyFeed.this, Activity_Main.class);
                 startActivity(myIntent);
                 finish();

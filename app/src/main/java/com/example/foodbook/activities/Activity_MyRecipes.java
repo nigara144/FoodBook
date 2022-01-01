@@ -4,10 +4,23 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.foodbook.GlobalState;
+import com.example.foodbook.boundary.InstanceBoundary;
+import com.example.foodbook.boundary.NewUserBoundary;
+import com.example.foodbook.boundary.UserBoundary;
+import com.example.foodbook.rest.RestClient;
+import com.example.foodbook.rest.RestInterface;
 import com.example.foodbook.utils.AppManager;
 import com.example.foodbook.fragments.Fragment_MyRecipes;
 import com.example.foodbook.R;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class Activity_MyRecipes extends AppCompatActivity  {

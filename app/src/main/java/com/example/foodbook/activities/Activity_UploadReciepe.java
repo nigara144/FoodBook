@@ -16,6 +16,16 @@ import android.widget.Spinner;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.foodbook.GlobalState;
+import com.example.foodbook.boundary.InstanceBoundary;
+import com.example.foodbook.boundary.UserBoundary;
+import com.example.foodbook.boundaryhelpers.CreatedBy;
+import com.example.foodbook.boundaryhelpers.InstanceId;
+import com.example.foodbook.boundaryhelpers.Location;
+import com.example.foodbook.model.MainData;
+import com.example.foodbook.rest.RestClient;
+import com.example.foodbook.rest.RestInterface;
 import com.example.foodbook.utils.AppManager;
 import com.example.foodbook.R;
 import com.example.foodbook.objects.Recipe;
@@ -30,6 +40,10 @@ import java.util.Map;
 import java.util.Objects;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 //import com.google.firebase.firestore.QuerySnapshot;
 //import com.google.firebase.storage.FirebaseStorage;
 //import com.google.firebase.storage.StorageReference;
@@ -101,6 +115,49 @@ public class Activity_UploadReciepe extends AppCompatActivity implements View.On
                 break;
             case R.id.doneUpload_BTN:
                 progress_bar.setVisibility(View.VISIBLE);
+
+                UserBoundary mainData = GlobalState.getLoggedUser().getLoggedUser();
+
+                HashMap<String, Object> attributes = new HashMap<>();
+                attributes.put("category", recipe_category_LBL.getSelectedItem().toString());
+                attributes.put("ingredients", recipe_ingredients_UPLD_LBL.getText().toString());
+                attributes.put("directions", recipe_directions_UPLD_LBL.getText().toString());
+                attributes.put("preptime", preparation_Time_LBL.getText().toString());
+
+                InstanceBoundary instanceBoundary = new InstanceBoundary(
+                        new InstanceId(),
+                        "RECIPE",
+                        recipe_Name_LBL.getText().toString(),
+                        true,
+                        null,
+                        new CreatedBy(),
+                        new Location(),
+                        attributes
+                );
+
+                RestInterface restInterface = RestClient.createRetrofit().create(RestInterface.class);
+                Call<InstanceBoundary> call = restInterface.createNewInstance(
+                        "2022A.Roei.Berko", mainData.getUserId().getEmail(), instanceBoundary
+                );
+                call.enqueue(new Callback<InstanceBoundary>() {
+                    @Override
+                    public void onResponse(Call<InstanceBoundary> call, Response<InstanceBoundary> response) {
+                        if (!response.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(), "Something wrong, Code: " + response.code(), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        Intent myIntent = new Intent(Activity_UploadReciepe.this, Activity_MyFeed.class);
+                        startActivity(myIntent);
+                        finish();
+                    }
+
+                    @Override
+                    public void onFailure(Call<InstanceBoundary> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), "Something wrong check it", Toast.LENGTH_LONG).show();
+                    }
+                });
+
 //                uploadImageToDB();
                 break;
             case R.id.backto_myFeed_BTN:

@@ -3,30 +3,25 @@ package com.example.foodbook.activities;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.Toast;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.foodbook.model.MainData;
+import com.example.foodbook.GlobalState;
+import com.example.foodbook.R;
+import com.example.foodbook.boundary.NewUserBoundary;
+import com.example.foodbook.boundary.UserBoundary;
+import com.example.foodbook.boundary.UserRole;
+import com.example.foodbook.objects.Recipe;
 import com.example.foodbook.rest.RestClient;
 import com.example.foodbook.rest.RestInterface;
 import com.example.foodbook.utils.AppManager;
-import com.example.foodbook.R;
-import com.example.foodbook.objects.Recipe;
-import com.example.foodbook.objects.User;
-//import com.google.android.gms.tasks.OnCompleteListener;
-//import com.google.android.gms.tasks.Task;
-//import com.google.firebase.auth.AuthResult;
-//import com.google.firebase.auth.FirebaseAuth;
-//import com.google.firebase.firestore.FirebaseFirestore;
+
 import java.util.ArrayList;
-import java.util.Objects;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -51,7 +46,7 @@ public class Activity_SignUp extends AppCompatActivity {
     private String email, email2;
     private String password;
     private String password_ver;
-    private MainData.UserRoleEntityEnum role;
+    private UserRole role;
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -91,7 +86,7 @@ public class Activity_SignUp extends AppCompatActivity {
         email = signUp_email_LBL.getText().toString();
         Log.d("ptt", email);
         password = signUp_password_LBL.getText().toString();
-        role = MainData.UserRoleEntityEnum.PLAYER;
+        role = UserRole.PLAYER;
         if (uName.isEmpty()) {
             signUp_uName_LBL.setError("UserName is Required");
             signUp_uName_LBL.requestFocus();
@@ -105,21 +100,39 @@ public class Activity_SignUp extends AppCompatActivity {
         }
 
         RestInterface restInterface = RestClient.createRetrofit().create(RestInterface.class);
-        Call<MainData> call = restInterface.createNewUser(new MainData(new User("2022A.Roei.Berko;", email), role, uName, password));
-        call.enqueue(new Callback<MainData>() {
+        Call<UserBoundary> call = restInterface.createNewUser(new NewUserBoundary(email, role, uName, password));
+        call.enqueue(new Callback<UserBoundary>() {
             @Override
-            public void onResponse(Call<MainData> call, Response<MainData> response) {
+            public void onResponse(Call<UserBoundary> call, Response<UserBoundary> response) {
                 if (!response.isSuccessful()) {
                     Toast.makeText(getApplicationContext(), "Something wrong, Code: " + response.code(), Toast.LENGTH_LONG).show();
                     return;
                 }
-                Intent myIntent = new Intent(Activity_SignUp.this, Activity_MyFeed.class);
-                startActivity(myIntent);
 
+                Call<UserBoundary> callLogin = restInterface.loginUserAndRetrieve("2022A.Roei.Berko", email);
+                callLogin.enqueue(new Callback<UserBoundary>() {
+                    @Override
+                    public void onResponse(Call<UserBoundary> call, Response<UserBoundary> response) {
+                        if (!response.isSuccessful()) {
+                            Toast.makeText(getApplicationContext(), "Something wrong, Code: " + response.code(), Toast.LENGTH_LONG).show();
+                            return;
+                        }
+
+                        GlobalState.getLoggedUser().setLoggedUser(response.body());
+
+                        Intent myIntent = new Intent(Activity_SignUp.this, Activity_MyFeed.class);
+                        startActivity(myIntent);
+                    }
+
+                    @Override
+                    public void onFailure(Call<UserBoundary> call, Throwable t) {
+                        Toast.makeText(getApplicationContext(), "Something wrong check it", Toast.LENGTH_LONG).show();
+                    }
+                });
             }
 
             @Override
-            public void onFailure(Call<MainData> call, Throwable t) {
+            public void onFailure(Call<UserBoundary> call, Throwable t) {
                 Toast.makeText(getApplicationContext(), "Something wrong check it", Toast.LENGTH_LONG).show();
             }
         });

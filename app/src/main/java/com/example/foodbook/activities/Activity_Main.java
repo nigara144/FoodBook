@@ -9,6 +9,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import com.example.foodbook.GlobalState;
+import com.example.foodbook.boundary.UserBoundary;
+import com.example.foodbook.model.MainData;
+import com.example.foodbook.rest.RestClient;
+import com.example.foodbook.rest.RestInterface;
 import com.example.foodbook.utils.AppManager;
 import com.example.foodbook.R;
 //import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,6 +24,10 @@ import com.example.foodbook.R;
 //import com.google.firebase.auth.FirebaseUser;
 
 import java.util.Timer;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class Activity_Main extends AppCompatActivity implements View.OnClickListener {
@@ -77,7 +87,27 @@ public class Activity_Main extends AppCompatActivity implements View.OnClickList
                     Toast.LENGTH_LONG).show();
             return;
         }else {
-//            isUserExist();
+            RestInterface restInterface = RestClient.createRetrofit().create(RestInterface.class);
+            Call<UserBoundary> callLogin = restInterface.loginUserAndRetrieve("2022A.Roei.Berko", entered_email);
+            callLogin.enqueue(new Callback<UserBoundary>() {
+                @Override
+                public void onResponse(Call<UserBoundary> call, Response<UserBoundary> response) {
+                    if (!response.isSuccessful()) {
+                        Toast.makeText(getApplicationContext(), "Something wrong, Code: " + response.code(), Toast.LENGTH_LONG).show();
+                        return;
+                    }
+
+                    GlobalState.getLoggedUser().setLoggedUser(response.body());
+
+                    Intent myIntent = new Intent(Activity_Main.this, Activity_MyFeed.class);
+                    startActivity(myIntent);
+                }
+
+                @Override
+                public void onFailure(Call<UserBoundary> call, Throwable t) {
+                    Toast.makeText(getApplicationContext(), "Something wrong check it", Toast.LENGTH_LONG).show();
+                }
+            });
         }
     }
 

@@ -6,8 +6,10 @@ import com.google.gson.annotations.SerializedName;
 
 public class MainData {
 
-    @SerializedName("userId")
-    public User user;
+    //@SerializedName("userId")
+    //public User user;
+    @SerializedName("email")
+    public String email;
     @SerializedName("role")
     public UserRoleEntityEnum role;
     @SerializedName("username")
@@ -18,9 +20,9 @@ public class MainData {
     public MainData() {
     }
 
-    public MainData(User user, UserRoleEntityEnum role, String username, String avatar) {
+    public MainData(String email, UserRoleEntityEnum role, String username, String avatar) {
 
-        this.user = user;
+        this.email = email;
         this.role = role;
         this.username = username;
         this.avatar = avatar;

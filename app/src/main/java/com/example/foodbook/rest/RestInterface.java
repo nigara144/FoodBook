@@ -1,8 +1,9 @@
 package com.example.foodbook.rest;
 
+import com.example.foodbook.boundary.InstanceBoundary;
+import com.example.foodbook.boundary.NewUserBoundary;
+import com.example.foodbook.boundary.UserBoundary;
 import com.example.foodbook.model.MainData;
-
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.Body;
@@ -10,18 +11,20 @@ import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Path;
 
 public interface RestInterface {
 
     //User REST Commands
     @GET("/iob/users/login/{userDomain}/{userEmail}")
-    Call<MainData> loginUserAndRetrieve();
+    Call<UserBoundary> loginUserAndRetrieve(@Path("userDomain") String userDomain,
+                                            @Path("userEmail") String userEmail);
 
     @PUT("/iob/users/{userDomain}/{userEmail}")
     Call<MainData> updateUser();
 
     @POST("/iob/users")
-    Call<MainData> createNewUser(@Body MainData mainData);
+    Call<UserBoundary> createNewUser(@Body NewUserBoundary mainData);
 
     //Admin REST Commands
     @GET("/iob/admin/users/{userDomain}/{userEmail}")
@@ -41,7 +44,9 @@ public interface RestInterface {
 
     //Instances REST Commands
     @POST("/iob/instances/{userDomain}/{userEmail}")
-    Call<MainData> createNewInstance();
+    Call<InstanceBoundary> createNewInstance(@Path("userDomain") String userDomain,
+                                     @Path("userEmail") String userEmail,
+                                     @Body InstanceBoundary instanceBoundary);
 
     @PUT("/iob/instances/{userDomain}/{userEmail}/{instanceDomain}/{instanceId}")
     Call<MainData> updateInstance();
@@ -59,10 +64,12 @@ public interface RestInterface {
     Call<MainData> getAllNamesLikeName();
 
     @GET("/iob/instances/{userDomain}/{userEmail}/search/byType/{type}")
-    Call<MainData> getAllTypesLikeType();
+    Call<InstanceBoundary[]> getAllTypesLikeType(@Path("userDomain") String userDomain,
+                                       @Path("userEmail") String userEmail,
+                                       @Path("type") String type);
 
     @GET("/iob/instances/{userDomain}/{userEmail}/search/near/{lat}/{lng}/{distance}")
-    Call<MainData> getAllByLocation();
+    Call<InstanceBoundary[]> getAllByLocation();
 
     @GET("/iob/instances/{userDomain}/{userEmail}/search/created/{creationWindow}")
     Call<MainData> getAllByCreationWindow();

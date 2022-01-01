@@ -21,6 +21,9 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
+import com.example.foodbook.GlobalState;
+import com.example.foodbook.boundary.UserBoundary;
+import com.example.foodbook.model.MainData;
 import com.example.foodbook.utils.AppManager;
 import com.example.foodbook.fragments.Fragment_Recent_Recipes;
 import com.example.foodbook.fragments.Fragment_wishList;
@@ -88,6 +91,12 @@ public class Activity_MyFeed extends AppCompatActivity implements View.OnClickLi
                 setUserNameAndEmail(userName, userEmail);
             }
         }
+
+        UserBoundary loggedUserData = GlobalState.getLoggedUser().getLoggedUser();
+        if (loggedUserData != null) {
+            setUserNameAndEmail(loggedUserData.getUsername(), loggedUserData.getUserId().getEmail());
+        }
+
         getSupportFragmentManager().beginTransaction().add(R.id.wishlist_LAY_list, fragment_wishList).commit();
         getSupportFragmentManager().beginTransaction().add(R.id.recentRecipes_LAY_list, recent_recipes).commit();
         initViews();
@@ -129,6 +138,7 @@ public class Activity_MyFeed extends AppCompatActivity implements View.OnClickLi
                 break;
             case R.id.logout_button:
 //                FirebaseAuth.getInstance().signOut();
+                GlobalState.getLoggedUser().setLoggedUser(null);
                 myIntent = new Intent(Activity_MyFeed.this, Activity_Main.class);
                 startActivity(myIntent);
                 finish();
